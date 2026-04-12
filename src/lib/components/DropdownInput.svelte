@@ -5,7 +5,7 @@ DropdownInput.svelte — A styled select dropdown input.
 <script>
   let {
     options = [],
-    value = '',
+    value = $bindable(''),
     label = 'Select',
     placeholder = 'Choose an option…',
     onchange = () => {},
@@ -15,9 +15,14 @@ DropdownInput.svelte — A styled select dropdown input.
 <div class="dropdown-input">
   <label class="dropdown-label" for="dropdown-field">{label}</label>
   <div class="select-wrapper">
-    <select id="dropdown-field" class="dropdown-field" {value} {onchange}>
+    <select
+      id="dropdown-field"
+      class="dropdown-field"
+      bind:value
+      onchange={onchange}
+    >
       {#if placeholder}
-        <option value="" selected>{placeholder}</option>
+        <option value="">{placeholder}</option>
       {/if}
       {#each options as option (option.value)}
         <option value={option.value}>{option.label}</option>
@@ -73,13 +78,10 @@ DropdownInput.svelte — A styled select dropdown input.
     background-color: var(--color-white);
     border: var(--border-width-thin) solid var(--color-border);
     border-radius: var(--border-radius-sm);
-    padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs)
-      var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) var(--spacing-sm);
     appearance: none;
     cursor: pointer;
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
     &:focus {
       outline: none;

@@ -17,6 +17,7 @@ Use it for headers, footers, and navigation that appear on all pages.
 
   // In Svelte 5, we use $props() to receive the page content
   let { children } = $props();
+
 </script>
 
 {#if page.data.showHeader !== false}
@@ -35,8 +36,6 @@ Use it for headers, footers, and navigation that appear on all pages.
 <style>
   /* Styles here only apply to this layout */
   main {
-    min-height: calc(
-      100vh - var(--site-chrome-height)
-    ); /* Ensure footer stays at bottom */
+    min-height: calc(100vh - var(--site-chrome-height)); /* Ensure footer stays at bottom */
   }
 </style>

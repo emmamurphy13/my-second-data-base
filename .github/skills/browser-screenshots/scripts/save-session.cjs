@@ -46,7 +46,6 @@ function parseArgs(args) {
 }
 
 async function saveSession(options) {
-  // eslint-disable-line no-unused-vars
   // Ensure session directory exists
   if (!fs.existsSync(SESSION_DIR)) {
     fs.mkdirSync(SESSION_DIR, { recursive: true });
@@ -86,9 +85,7 @@ async function saveSession(options) {
       timeout: 60000,
     });
 
-    console.log(
-      'Browser opened. Log in and then close the browser window when done...\n'
-    );
+    console.log('Browser opened. Log in and then close the browser window when done...\n');
 
     // Wait for browser to be closed by user
     await new Promise((resolve) => {
@@ -108,9 +105,7 @@ async function saveSession(options) {
   // If we get here without saving, the browser was closed unexpectedly
   // We need a different approach - save on page close
   console.log('Browser closed without saving session.');
-  console.log(
-    "Note: To save session, keep the browser open and we'll save on context close."
-  );
+  console.log('Note: To save session, keep the browser open and we\'ll save on context close.');
 }
 
 async function saveSessionInteractive(options) {
@@ -151,9 +146,7 @@ async function saveSessionInteractive(options) {
     timeout: 60000,
   });
 
-  console.log(
-    'Browser opened. Log in and then press ENTER here when done...\n'
-  );
+  console.log('Browser opened. Log in and then press ENTER here when done...\n');
 
   // Wait for user to press Enter
   await new Promise((resolve) => {
@@ -169,9 +162,7 @@ async function saveSessionInteractive(options) {
 
   console.log(`Session saved to: ${sessionPath}`);
   console.log(`\nUse with capture.js:`);
-  console.log(
-    `  node capture.cjs --url URL --output out.png --session ${options.session}`
-  );
+  console.log(`  node capture.cjs --url URL --output out.png --session ${options.session}`);
 
   await browser.close();
 }
@@ -213,17 +204,16 @@ if (args.includes('--list')) {
     console.log('No sessions saved yet.');
     process.exit(0);
   }
-
-  const sessions = fs
-    .readdirSync(SESSION_DIR)
-    .filter((f) => f.endsWith('.json'))
-    .map((f) => f.replace('.json', ''));
-
+  
+  const sessions = fs.readdirSync(SESSION_DIR)
+    .filter(f => f.endsWith('.json'))
+    .map(f => f.replace('.json', ''));
+  
   if (sessions.length === 0) {
     console.log('No sessions saved yet.');
   } else {
     console.log('Saved sessions:');
-    sessions.forEach((s) => console.log(`  - ${s}`));
+    sessions.forEach(s => console.log(`  - ${s}`));
   }
   process.exit(0);
 }

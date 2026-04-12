@@ -5,19 +5,19 @@
  *
  * Learn more: https://storybook.js.org/docs/configure/user-interface/theming
  */
-import { addons } from 'storybook/manager-api';
-import { create } from 'storybook/theming/create';
+import { addons } from "storybook/manager-api";
+import { create } from "storybook/theming/create";
 
 const theme = create({
-  base: 'light',
+  base: "light",
 
   // Sidebar branding
-  brandTitle: '',
-  brandUrl: '',
-  brandTarget: '_blank',
+  brandTitle: "",
+  brandUrl: "",
+  brandTarget: "_blank",
 });
 
 addons.setConfig({
   theme,
-  favicon: '/favicon.png',
+  favicon: "/favicon.png",
 });

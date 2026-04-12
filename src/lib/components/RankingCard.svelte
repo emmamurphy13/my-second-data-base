@@ -3,8 +3,6 @@
 RankingCard.svelte — A horizontal card showing rank, optional image, title, and description.
 -->
 <script>
-  import { asset } from '$app/paths';
-
   let {
     rank = 0,
     href = '',
@@ -15,21 +13,13 @@ RankingCard.svelte — A horizontal card showing rank, optional image, title, an
     value = '',
     valueLabel = '',
   } = $props();
-
-  // Resolve local images (those starting with /) using asset()
-  // but not external URLs (http://, https://, //, data:)
-  const resolvedImage = $derived(
-    image && image.startsWith('/') && !image.startsWith('//')
-      ? asset(image)
-      : image
-  );
 </script>
 
 {#snippet cardContent()}
   <span class="rank">{rank}</span>
   {#if image}
     <div class="thumbnail">
-      <img src={resolvedImage} alt={imageAlt} />
+      <img src={image} alt={imageAlt} />
     </div>
   {/if}
   <div class="content">

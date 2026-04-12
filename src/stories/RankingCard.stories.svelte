@@ -25,8 +25,7 @@
     args: {
       rank: 1,
       title: 'M.A. in Journalism',
-      description:
-        'Our flagship program trains reporters, editors, and multimedia journalists.',
+      description: 'Our flagship program trains reporters, editors, and multimedia journalists.',
       href: '',
       image: '',
       imageAlt: '',
@@ -82,10 +81,7 @@
 <!-- With Description: rank, title, and supporting text -->
 <Story
   name="With Description"
-  args={{
-    description:
-      'Our flagship program trains reporters, editors, and multimedia journalists.',
-  }}
+  args={{ description: 'Our flagship program trains reporters, editors, and multimedia journalists.' }}
 >
   {#snippet children(args)}
     <div style="max-width: 600px;">
@@ -111,8 +107,7 @@
     image: '/example-photo.gif',
     imageAlt: 'News photo',
     title: 'Become a force for good. Join our next class.',
-    description:
-      'At the Craig Newmark Graduate School of Journalism, change is in our DNA.',
+    description: 'At the Craig Newmark Graduate School of Journalism, change is in our DNA.',
   }}
 >
   {#snippet children(args)}
@@ -147,8 +142,7 @@
     image: '/example-photo.gif',
     imageAlt: 'News photo',
     title: 'Become a force for good. Join our next class.',
-    description:
-      'At the Craig Newmark Graduate School of Journalism, change is in our DNA.',
+    description: 'At the Craig Newmark Graduate School of Journalism, change is in our DNA.',
     value: '312',
     valueLabel: 'alumni',
   }}

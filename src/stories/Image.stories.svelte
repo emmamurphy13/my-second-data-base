@@ -27,13 +27,11 @@
     argTypes: {
       src: {
         control: 'text',
-        description:
-          'Image URL or local path (local paths starting with "/" are resolved via asset())',
+        description: 'Image URL or local path (local paths starting with "/" are resolved via asset())',
       },
       alt: {
         control: 'text',
-        description:
-          'Descriptive alt text for screen readers and accessibility',
+        description: 'Descriptive alt text for screen readers and accessibility',
       },
       caption: {
         control: 'text',
@@ -123,8 +121,7 @@
   args={{
     src: DEMO_IMAGE,
     alt: 'The Craig Newmark Graduate School of Journalism is at 219 West 40th Street in Midtown Manhattan.',
-    caption:
-      'Founded in 2006, the school trains the next generation of journalists.',
+    caption: 'Founded in 2006, the school trains the next generation of journalists.',
     credit: 'Craig Newmark Graduate School of Journalism',
     size: 'small',
   }}

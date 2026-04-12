@@ -35,7 +35,7 @@ SearchInput.svelte — A search text input with magnifying glass icon.
       type="search"
       {placeholder}
       bind:value
-      {oninput}
+      oninput={oninput}
     />
   </div>
 </div>
@@ -67,7 +67,7 @@ SearchInput.svelte — A search text input with magnifying glass icon.
   .search-icon {
     position: absolute;
     left: var(--spacing-xs);
-    color: var(--color-accent);
+    color: var(--color-medium-gray);
     pointer-events: none;
   }
 
@@ -80,11 +80,8 @@ SearchInput.svelte — A search text input with magnifying glass icon.
     background-color: var(--color-white);
     border: var(--border-width-thin) solid var(--color-border);
     border-radius: var(--border-radius-sm);
-    padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xs)
-      var(--spacing-lg);
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
+    padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xs) var(--spacing-lg);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
     &::placeholder {
       color: var(--color-medium-gray);

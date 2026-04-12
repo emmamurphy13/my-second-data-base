@@ -10,7 +10,6 @@ Write weekly class script files (`.svx`) that match the established patterns, to
 ## When to Use
 
 Use this skill when asked to:
-
 - Write a new week's script content
 - Draft or outline a class session
 - Create tutorial content for the syllabus
@@ -19,7 +18,6 @@ Use this skill when asked to:
 ## Reference Materials
 
 Before writing, consult:
-
 - **`src/content/OUTLINE.md`** - Topic outline for each week
 - **`src/content/scripts/week-1.svx`** - Example of foundational tools introduction
 - **`src/content/scripts/week-2.svx`** - Example of framework/deployment topics
@@ -27,16 +25,14 @@ Before writing, consult:
 ## File Structure
 
 ### Location
-
 Save scripts to `src/content/scripts/week-{N}.svx`
 
 ### Frontmatter (Required)
-
 ```yaml
 ---
-title: 'Descriptive Title'
-summary: 'Brief description of what students will learn'
-date: 'Mon. DD, YYYY'
+title: "Descriptive Title"
+summary: "Brief description of what students will learn"
+date: "Mon. DD, YYYY"
 week: N
 locked: false
 ---
@@ -49,7 +45,6 @@ locked: false
 - **locked**: Set to `false` for published content, `true` for future weeks
 
 ### Script Block (Required)
-
 ```svelte
 <script>
   import Screenshot from '$lib/components/Screenshot.svelte';
@@ -61,7 +56,6 @@ Always include this even if screenshots aren't used yet—they will be added lat
 ## Content Structure
 
 ### Parts
-
 Use `## Part N: Title` for major sections. Typically 3-4 parts per week.
 
 ```markdown
@@ -75,7 +69,6 @@ Use `## Part N: Title` for major sections. Typically 3-4 parts per week.
 ```
 
 ### Subheadings
-
 Use `### Subtopic` for steps within parts.
 
 ```markdown
@@ -89,37 +82,30 @@ Use `### Subtopic` for steps within parts.
 ```
 
 ### Homework Section
-
 Always end with `## Homework Assignments` containing 2-3 tasks following this pattern:
 
 ```markdown
 ## Homework Assignments
 
 ### Task 1: Creating
-
 [Hands-on practice creating something - repositories, projects, components, etc.]
 
 ### Task 2: Exploring
-
 [Research or exploration with Copilot assistance - cloning repos, studying code, etc.]
 
 ### Task 3: Presenting
-
 [Prepare to share findings with class - be ready to present, write a summary, etc.]
 ```
 
 ## Writing Style
 
 ### Voice
-
 - **Conversational but instructional** - Write in second person
 - **Direct commands** - "Open your browser", "Click the button", "Type this command"
 - **Encouraging** - "Congratulations!", "Don't worry about that one"
 
 ### UI Element References
-
 **Use quotes, not bold**, for UI elements:
-
 - ✅ `Click the "Clone repository" button`
 - ✅ `Select "Create a new repository" from the dropdown`
 - ✅ `Go to the "Settings" tab`
@@ -128,13 +114,11 @@ Always end with `## Homework Assignments` containing 2-3 tasks following this pa
 ### Code Formatting
 
 **Inline code** for file names, commands, and short code:
-
 ```markdown
 Open the `README.md` file and run `npm install`.
 ```
 
 **Fenced code blocks** with language hints:
-
 ````markdown
 ```bash
 npm run dev
@@ -152,13 +136,11 @@ let headline = 'Breaking News';
 ### Links
 
 Use standard Markdown link syntax:
-
 ```markdown
 See [GitHub's guide to Markdown](https://docs.github.com/...) for more options.
 ```
 
 For external sites you want to highlight inline, you can use `<a>` tags with `target="_blank"`:
-
 ```markdown
 Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> to learn more.
 ```
@@ -174,7 +156,6 @@ Error: < is not a valid component name
 ```
 
 Instead of comparison operators, use words:
-
 - ✅ `under 600px` or `less than 600px`
 - ✅ `over 900px` or `greater than 900px`
 - ❌ `< 600px`
@@ -186,34 +167,31 @@ This applies everywhere in the content—paragraphs, lists, tables, and code com
 
 ```markdown
 \`\`\`css
-@media (max-width: 600px) { /_ This is fine _/ }
+@media (max-width: 600px) { /* This is fine */ }
 \`\`\`
 ```
 
 **Style blocks need special handling.** When showing SCSS/CSS code with `<style>` tags, show the style content in a code block but don't wrap it in the actual `<style>` tag in your explanation—MDsveX will try to process it.
 
 ### Explanations
-
 - Explain **why**, not just **how**
 - Use relatable analogies (git as "air traffic controller", GitHub as "airport")
 - Provide context before diving into steps
 - Acknowledge when something might seem complex
 
 ### Tables
-
 Use tables to summarize information:
 
 ```markdown
-| Files                     | Description          |
-| ------------------------- | -------------------- |
-| `src/routes/+page.svelte` | Your homepage        |
-| `package.json`            | Project dependencies |
+| Files | Description |
+|-------|-------------|
+| `src/routes/+page.svelte` | Your homepage |
+| `package.json` | Project dependencies |
 ```
 
 ## Screenshots
 
 ### When to Include
-
 - At each major UI state change
 - After important commands complete
 - To show expected results
@@ -222,7 +200,6 @@ Use tables to summarize information:
 ### Screenshot Component Usage
 
 **Browser content** (web pages, GitHub, documentation):
-
 ```svelte
 <Screenshot
   src="/screenshots/week-1/github-homepage.png"
@@ -233,7 +210,6 @@ Use tables to summarize information:
 ```
 
 **Desktop applications** (VS Code, terminals):
-
 ```svelte
 <Screenshot
   src="/screenshots/week-1/vscode-explorer.png"
@@ -243,15 +219,12 @@ Use tables to summarize information:
 ```
 
 ### Screenshot File Naming
-
 - Save to `static/screenshots/week-{N}/`
 - Use kebab-case: `vscode-source-control.png`, `github-new-repo.png`
 - Be descriptive: `npm-install-complete.png` not `step3.png`
 
 ### Alt Text
-
 Write descriptive alt text that explains what the screenshot shows:
-
 - ✅ `"Visual Studio Code Source Control panel showing staged changes"`
 - ✅ `"GitHub repository page with the Actions tab highlighted"`
 - ❌ `"Screenshot"`
@@ -260,7 +233,6 @@ Write descriptive alt text that explains what the screenshot shows:
 ## Common Patterns
 
 ### Command + Expected Output
-
 Show the command, then show what students should see:
 
 ```markdown
@@ -274,61 +246,53 @@ You should see a version number like `v20.11.0` or similar.
 ```
 
 ### Step-by-Step Instructions
-
 Number steps implicitly through prose, not explicitly:
 
 ```markdown
 ### Install the extension
 
-Click on the Extensions icon in the left sidebar. It looks like four squares.
-Then search for "GitHub Copilot" in the search bar. Select the extension by
+Click on the Extensions icon in the left sidebar. It looks like four squares. 
+Then search for "GitHub Copilot" in the search bar. Select the extension by 
 GitHub from the list and click the "Install" button.
 ```
 
 ### Troubleshooting
-
 Anticipate common issues:
 
 ```markdown
-If you see an error message like `command not found: node`, that means Node.js
+If you see an error message like `command not found: node`, that means Node.js 
 isn't installed yet. We'll fix that in the next section.
 ```
 
 ### Encouraging Exploration
-
 Include moments for students to experiment:
 
 ```markdown
-Try making a few more changes. Edit the byline and publication date. Get a feel
+Try making a few more changes. Edit the byline and publication date. Get a feel 
 for how quickly you can see your changes reflected.
 ```
 
 ## Content Guidelines
 
 ### Pacing
-
 - Don't rush through concepts
 - One new concept at a time
 - Build on previous weeks' knowledge
 - Include practice exercises within the content, not just homework
 
 ### Difficulty Curve
-
 - Start with the simplest version
 - Add complexity gradually
 - Acknowledge when things get harder
 - Provide escape hatches ("If you get stuck, ask Copilot...")
 
 ### Real-World Context
-
 - Reference actual news organizations using these tools
 - Show open-source examples from newsrooms
 - Connect concepts to journalism workflows
 
 ### Length
-
 Scripts are substantial—typically 400-700 lines. Don't rush to condense. Students benefit from:
-
 - Detailed step-by-step instructions
 - Multiple screenshots
 - Background context
@@ -345,7 +309,7 @@ Scripts are substantial—typically 400-700 lines. Don't rush to condense. Stude
 - [ ] Screenshots use appropriate `showChrome` setting
 - [ ] Alt text is descriptive for all screenshots
 - [ ] Homework section includes 2-3 tasks
-- [ ] Content explains _why_ not just _how_
+- [ ] Content explains *why* not just *how*
 - [ ] Encourages experimentation and exploration
 
 ## Example Opening
@@ -354,9 +318,9 @@ Here's how a typical script begins:
 
 ```markdown
 ---
-title: 'Svelte Components'
-summary: 'How to build reusable interface elements with Svelte'
-date: 'Feb. 9, 2026'
+title: "Svelte Components"
+summary: "How to build reusable interface elements with Svelte"
+date: "Feb. 9, 2026"
 week: 3
 locked: false
 ---
@@ -367,13 +331,12 @@ locked: false
 
 ## Part 1: Introduction to Components
 
-What's a component? It's a reusable piece of your user interface—a button,
+What's a component? It's a reusable piece of your user interface—a button, 
 a card, a chart, a quote box—that you can define once and use anywhere.
 
-Think of components like LEGO bricks. Each brick has a specific shape and
-purpose, but you can combine them in endless ways to build something new.
-In web development, components let you build complex interfaces from simple,
+Think of components like LEGO bricks. Each brick has a specific shape and 
+purpose, but you can combine them in endless ways to build something new. 
+In web development, components let you build complex interfaces from simple, 
 well-defined pieces.
 
 [Content continues...]
-```

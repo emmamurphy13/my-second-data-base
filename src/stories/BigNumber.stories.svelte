@@ -21,13 +21,11 @@
     argTypes: {
       number: {
         control: 'text',
-        description:
-          'The prominent value to display (e.g. "42%", "$1.2M", "3,500")',
+        description: 'The prominent value to display (e.g. "42%", "$1.2M", "3,500")',
       },
       label: {
         control: 'text',
-        description:
-          'Short description of the metric displayed below the number',
+        description: 'Short description of the metric displayed below the number',
       },
       footnote: {
         control: 'text',

@@ -10,7 +10,6 @@ Capture screenshots of Visual Studio Code using a semi-automated workflow. This 
 ## When to Use
 
 Use this skill when the user asks you to:
-
 - Capture a screenshot of VSCode in a specific state
 - Document VSCode UI elements (Source Control, Extensions, Copilot Chat, etc.)
 - Take screenshots of terminal output
@@ -31,7 +30,6 @@ node .github/skills/vscode-screenshots/scripts/capture.cjs \
 ```
 
 The script will:
-
 1. Display the setup instructions in a formatted box
 2. Wait for the user to press Enter
 3. Capture the active VSCode window
@@ -39,18 +37,17 @@ The script will:
 
 ### Options
 
-| Option           | Description                                                 | Default                   |
-| ---------------- | ----------------------------------------------------------- | ------------------------- |
-| `--output`       | Output file path (required)                                 | -                         |
-| `--instructions` | Setup instructions for the user                             | "Set up VSCode as needed" |
-| `--delay`        | Seconds to wait after Enter before capture (with countdown) | 5                         |
-| `--width`        | Suggested window width (displayed in instructions)          | 1280                      |
-| `--height`       | Suggested window height (displayed in instructions)         | 800                       |
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--output` | Output file path (required) | - |
+| `--instructions` | Setup instructions for the user | "Set up VSCode as needed" |
+| `--delay` | Seconds to wait after Enter before capture (with countdown) | 5 |
+| `--width` | Suggested window width (displayed in instructions) | 1280 |
+| `--height` | Suggested window height (displayed in instructions) | 800 |
 
 ### Examples
 
 **Capture the Source Control panel:**
-
 ```bash
 node .github/skills/vscode-screenshots/scripts/capture.cjs \
   --output static/screenshots/week-1/vscode-source-control.png \
@@ -58,7 +55,6 @@ node .github/skills/vscode-screenshots/scripts/capture.cjs \
 ```
 
 **Capture Extensions marketplace:**
-
 ```bash
 node .github/skills/vscode-screenshots/scripts/capture.cjs \
   --output static/screenshots/week-1/vscode-extensions.png \
@@ -66,7 +62,6 @@ node .github/skills/vscode-screenshots/scripts/capture.cjs \
 ```
 
 **Capture Copilot Chat panel:**
-
 ```bash
 node .github/skills/vscode-screenshots/scripts/capture.cjs \
   --output static/screenshots/week-1/vscode-copilot-chat.png \
@@ -74,7 +69,6 @@ node .github/skills/vscode-screenshots/scripts/capture.cjs \
 ```
 
 **Capture a specific file open:**
-
 ```bash
 node .github/skills/vscode-screenshots/scripts/capture.cjs \
   --output static/screenshots/week-1/vscode-readme.png \
@@ -82,7 +76,6 @@ node .github/skills/vscode-screenshots/scripts/capture.cjs \
 ```
 
 **Capture with custom dimensions reminder:**
-
 ```bash
 node .github/skills/vscode-screenshots/scripts/capture.cjs \
   --output static/screenshots/week-1/vscode-wide.png \
@@ -95,16 +88,16 @@ node .github/skills/vscode-screenshots/scripts/capture.cjs \
 
 Include these in your instructions to help users:
 
-| Action           | Mac         | Linux/Windows |
-| ---------------- | ----------- | ------------- |
-| File Explorer    | Cmd+Shift+E | Ctrl+Shift+E  |
-| Source Control   | Cmd+Shift+G | Ctrl+Shift+G  |
-| Extensions       | Cmd+Shift+X | Ctrl+Shift+X  |
-| Copilot Chat     | Cmd+Shift+I | Ctrl+Shift+I  |
-| Terminal         | Cmd+`       | Ctrl+`        |
-| Problems         | Cmd+Shift+M | Ctrl+Shift+M  |
-| Command Palette  | Cmd+Shift+P | Ctrl+Shift+P  |
-| Markdown Preview | Cmd+Shift+V | Ctrl+Shift+V  |
+| Action | Mac | Linux/Windows |
+|--------|-----|---------------|
+| File Explorer | Cmd+Shift+E | Ctrl+Shift+E |
+| Source Control | Cmd+Shift+G | Ctrl+Shift+G |
+| Extensions | Cmd+Shift+X | Ctrl+Shift+X |
+| Copilot Chat | Cmd+Shift+I | Ctrl+Shift+I |
+| Terminal | Cmd+` | Ctrl+` |
+| Problems | Cmd+Shift+M | Ctrl+Shift+M |
+| Command Palette | Cmd+Shift+P | Ctrl+Shift+P |
+| Markdown Preview | Cmd+Shift+V | Ctrl+Shift+V |
 
 ## Saving Screenshots
 
@@ -113,14 +106,12 @@ Save to `/static/screenshots/week-{week}/` with descriptive kebab-case filenames
 A WebP copy is automatically generated alongside each PNG screenshot (requires `cwebp` — install with `brew install webp`). The Screenshot component serves WebP via `<picture>` elements for better performance. You do not need to reference the `.webp` files manually.
 
 **Naming convention:**
-
 - ✅ `vscode-source-control.png`
 - ✅ `vscode-readme-preview.png`
 - ✅ `vscode-copilot-response.png`
 - ❌ `VSCodeSourceControl.png`
 
 **Directory structure:**
-
 ```
 static/screenshots/
   week-1/
@@ -140,8 +131,8 @@ When embedding in `.svx` files, use the Screenshot component **without** browser
   import Screenshot from '$lib/components/Screenshot.svelte';
 </script>
 
-<Screenshot
-  src="/screenshots/week-1/vscode-source-control.png"
+<Screenshot 
+  src="/screenshots/week-1/vscode-source-control.png" 
   alt="VSCode Source Control panel showing staged changes"
   showChrome={false}
 />
@@ -151,18 +142,17 @@ When embedding in `.svx` files, use the Screenshot component **without** browser
 
 ## Platform Support
 
-| Platform    | Screenshot Method                                    |
-| ----------- | ---------------------------------------------------- |
-| **macOS**   | `screencapture` with window ID from AppleScript      |
-| **Linux**   | `gnome-screenshot`, `scrot`, or ImageMagick `import` |
-| **Windows** | Not yet supported (manual screenshots required)      |
+| Platform | Screenshot Method |
+|----------|-------------------|
+| **macOS** | `screencapture` with window ID from AppleScript |
+| **Linux** | `gnome-screenshot`, `scrot`, or ImageMagick `import` |
+| **Windows** | Not yet supported (manual screenshots required) |
 
 The script auto-detects the platform and uses the appropriate tool.
 
 ### Linux Dependencies
 
 On Linux, ensure one of these tools is installed:
-
 - `gnome-screenshot` (GNOME desktop)
 - `scrot` (`sudo apt install scrot`)
 - `import` from ImageMagick (`sudo apt install imagemagick`)
@@ -188,7 +178,7 @@ On Linux, ensure one of these tools is installed:
 **When running from Cline (VSCode integrated terminal):**
 
 1. Run the capture command - the instruction box appears
-2. Press Enter to start the 5-second countdown
+2. Press Enter to start the 5-second countdown  
 3. Quickly navigate away from the terminal tab (click on an editor tab or use Cmd+1)
 4. Set up the VSCode view you want during the countdown
 5. When the interactive capture triggers, click on the VSCode window

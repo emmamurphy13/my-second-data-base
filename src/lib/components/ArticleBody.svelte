@@ -13,7 +13,7 @@ USAGE EXAMPLE:
 -->
 <script>
   let {
-    children, // The content passed between opening/closing tags
+    children,         // The content passed between opening/closing tags
   } = $props();
 </script>
 

@@ -26,7 +26,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
-const { execSync } = require('child_process');
+const { execSync, spawn } = require('child_process');
 
 // Session storage directory
 const SESSION_DIR = path.join(os.homedir(), '.playwright-sessions');
@@ -114,9 +114,7 @@ async function recordVideo(options) {
 
   // Check ffmpeg for GIF conversion
   if (outputExt === '.gif' && !checkFfmpeg()) {
-    console.error(
-      'Error: ffmpeg is required for GIF output. Install with: brew install ffmpeg'
-    );
+    console.error('Error: ffmpeg is required for GIF output. Install with: brew install ffmpeg');
     process.exit(1);
   }
 
@@ -142,6 +140,7 @@ async function recordVideo(options) {
 
   // Create temp directory for video recording
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'video-capture-'));
+  const tempVideoPath = path.join(tempDir, 'recording.webm');
 
   // Launch browser with video recording
   const browser = await chromium.launch({

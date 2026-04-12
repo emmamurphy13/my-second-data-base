@@ -24,45 +24,16 @@
 </script>
 
 <!-- Default: three BigNumber cards in a row -->
-<Story
-  name="Default"
-  parameters={{
-    docs: {
-      source: {
-        code: `<Dashboard>
-  <BigNumber number="2006" label="Year Founded" />
-  <BigNumber number="1,300" label="Alumni" />
-  <BigNumber number="50%" label="Attend tuition free" footnote="As of Aug. 2025" />
-</Dashboard>`,
-      },
-    },
-  }}
->
+<Story name="Default">
   <Dashboard>
     <BigNumber number="2006" label="Year Founded" />
     <BigNumber number="1,300" label="Alumni" />
-    <BigNumber
-      number="50%"
-      label="Attend tuition free"
-      footnote="As of Aug. 2025"
-    />
+    <BigNumber number="50%" label="Attend tuition free" footnote="As of Aug. 2025" />
   </Dashboard>
 </Story>
 
 <!-- Two Stats: two-card layout -->
-<Story
-  name="Two Stats"
-  parameters={{
-    docs: {
-      source: {
-        code: `<Dashboard>
-  <BigNumber number="2006" label="Year Founded" />
-  <BigNumber number="1,300" label="Alumni" />
-</Dashboard>`,
-      },
-    },
-  }}
->
+<Story name="Two Stats">
   <Dashboard>
     <BigNumber number="2006" label="Year Founded" />
     <BigNumber number="1,300" label="Alumni" />
@@ -70,20 +41,7 @@
 </Story>
 
 <!-- Three Stats: three-card layout -->
-<Story
-  name="Three Stats"
-  parameters={{
-    docs: {
-      source: {
-        code: `<Dashboard>
-  <BigNumber number="2006" label="Year Founded" />
-  <BigNumber number="3" label="Media Centers" />
-  <BigNumber number="50%" label="Attend tuition free" />
-</Dashboard>`,
-      },
-    },
-  }}
->
+<Story name="Three Stats">
   <Dashboard>
     <BigNumber number="2006" label="Year Founded" />
     <BigNumber number="3" label="Media Centers" />
@@ -92,32 +50,7 @@
 </Story>
 
 <!-- With Footnotes: stat cards with source attribution -->
-<Story
-  name="With Footnotes"
-  parameters={{
-    docs: {
-      source: {
-        code: `<Dashboard>
-  <BigNumber
-    number="2006"
-    label="Year Founded"
-    footnote="Born during the digital revolution"
-  />
-  <BigNumber
-    number="1,300"
-    label="Alumni"
-    footnote="And growing every year"
-  />
-  <BigNumber
-    number="50%"
-    label="Attend tuition free"
-    footnote="As of Aug. 2025"
-  />
-</Dashboard>`,
-      },
-    },
-  }}
->
+<Story name="With Footnotes">
   <Dashboard>
     <BigNumber
       number="2006"

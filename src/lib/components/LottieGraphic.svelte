@@ -29,14 +29,10 @@ CSS margin percentages are relative to element width, so the conversion is:
   const ar = $derived(
     animationData?.h && animationData?.w
       ? animationData.h / animationData.w
-      : 0.75 // fallback: 600/800
+      : 0.75   // fallback: 600/800
   );
-  const marginTop = $derived(
-    trimTop > 0 ? `${-(trimTop * ar * 100).toFixed(2)}%` : null
-  );
-  const marginBottom = $derived(
-    trimBottom > 0 ? `${-(trimBottom * ar * 100).toFixed(2)}%` : null
-  );
+  const marginTop    = $derived(trimTop    > 0 ? `${-(trimTop    * ar * 100).toFixed(2)}%` : null);
+  const marginBottom = $derived(trimBottom > 0 ? `${-(trimBottom * ar * 100).toFixed(2)}%` : null);
 
   let canvas;
   let player;

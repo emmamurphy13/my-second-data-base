@@ -1,22 +1,15 @@
 <!--
 @component
 DatabaseHeader.svelte — A full-width hero header with optional background color,
-kicker, headline, byline, date, description, children slot for additional content
-(e.g. search controls), and an optional graphic snippet that renders in a right
-column.
+headline, byline, date, description, children slot for additional content (e.g.
+search controls), and an optional graphic snippet that renders in a right column.
 
 When `graphic` is provided the inner layout becomes a two-column flex row
 (text + controls on the left, graphic on the right). Without `graphic` the
 layout is single-column and backward-compatible.
 -->
 <script>
-  import Kicker from './Kicker.svelte';
-  import Headline from './Headline.svelte';
-  import Byline from './Byline.svelte';
-  import Pubdate from './Pubdate.svelte';
-
   let {
-    kicker = '',
     headline = '',
     description = '',
     byline = '',
@@ -27,19 +20,25 @@ layout is single-column and backward-compatible.
   } = $props();
 </script>
 
-<header class="hero-header" style:background-color={bgColor}>
+<header
+  class="hero-header"
+  style:background-color={bgColor}
+>
   <div class="hero-inner" class:has-graphic={!!graphic}>
     <div class="hero-left">
       <div class="hero-content">
-        {#if kicker}
-          <Kicker text={kicker} />
+        {#if headline}
+          <h1 class="hero-headline">{headline}</h1>
         {/if}
-        <Headline text={headline} />
         {#if description}
           <p class="hero-description">{description}</p>
         {/if}
-        <Byline {byline} />
-        <Pubdate {date} />
+        {#if byline}
+          <p class="hero-byline">{byline}</p>
+        {/if}
+        {#if date}
+          <p class="hero-date">{date}</p>
+        {/if}
       </div>
       {#if children}
         <div class="hero-extra">
@@ -83,9 +82,29 @@ layout is single-column and backward-compatible.
     max-width: var(--max-width);
   }
 
-  /* Override Headline margin and desktop font size for the hero context */
-  .hero-content :global(.headline) {
+  .hero-headline {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--color-dark);
     margin-bottom: var(--spacing-xs);
+  }
+
+  .hero-byline {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-medium-gray);
+    margin: var(--spacing-xxs) 0;
+  }
+
+  .hero-date {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    color: var(--color-medium-gray);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    margin: var(--spacing-xxs) 0;
   }
 
   .hero-description {
@@ -119,6 +138,10 @@ layout is single-column and backward-compatible.
       align-items: center;
     }
 
+    .hero-headline {
+      font-size: var(--font-size-6xl);
+    }
+
     .hero-description {
       font-size: var(--font-size-xl);
     }
@@ -132,8 +155,7 @@ layout is single-column and backward-compatible.
     .hero-inner {
       padding: 0 var(--spacing-md);
     }
-
-    .hero-content :global(.headline) {
+    .hero-headline {
       font-size: var(--font-size-display);
     }
   }

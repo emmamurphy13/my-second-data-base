@@ -35,14 +35,13 @@
   <div class="story-container">
     <MethodologyBox>
       <p>
-        The data in this story was compiled by student journalists at the Craig
-        Newmark Graduate School of Journalism. Records were obtained through
-        Freedom of Information Law requests to New York City agencies and
-        verified against public filings.
+        The data in this story was compiled by student journalists at the Craig Newmark
+        Graduate School of Journalism. Records were obtained through Freedom of Information
+        Law requests to New York City agencies and verified against public filings.
       </p>
       <p>
-        Analysis was performed using Python and the pandas library. Our code and
-        data are available on <a href="https://github.com">GitHub</a>.
+        Analysis was performed using Python and the pandas library. Our code and data are
+        available on <a href="https://github.com">GitHub</a>.
       </p>
     </MethodologyBox>
   </div>
@@ -53,9 +52,9 @@
   <div class="story-container">
     <MethodologyBox title="About the Data">
       <p>
-        This database was built from public records published by NYC agencies
-        and updated weekly. School-level data is aggregated from individual
-        reports filed by city officials and verified by our student reporters.
+        This database was built from public records published by NYC agencies and updated
+        weekly. School-level data is aggregated from individual reports filed by city
+        officials and verified by our student reporters.
       </p>
     </MethodologyBox>
   </div>
@@ -69,20 +68,14 @@
         Data was obtained from the
         <a href="https://data.cityofnewyork.us">NYC Open Data portal</a> and
         cross-referenced with records from the
-        <a href="https://www.dec.ny.gov"
-          >NYS Department of Environmental Conservation</a
-        >. Population estimates are from the U.S. Census Bureau's
-        <a href="https://www.census.gov/programs-surveys/acs"
-          >American Community Survey</a
-        >
+        <a href="https://www.dec.ny.gov">NYS Department of Environmental Conservation</a>.
+        Population estimates are from the U.S. Census Bureau's
+        <a href="https://www.census.gov/programs-surveys/acs">American Community Survey</a>
         (2020–2024 five-year estimates).
       </p>
       <p>
-        If you find errors or have questions about this data, please contact us
-        at
-        <a href="mailto:data@nycitynewsservice.com"
-          >data@nycitynewsservice.com</a
-        >.
+        If you find errors or have questions about this data, please contact us at
+        <a href="mailto:data@nycitynewsservice.com">data@nycitynewsservice.com</a>.
       </p>
     </MethodologyBox>
   </div>

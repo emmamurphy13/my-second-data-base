@@ -10,7 +10,6 @@ Capture browser screenshots and record videos when the user requests them. This 
 ## When to Use
 
 Use this skill when the user asks you to:
-
 - Capture a screenshot of a specific URL
 - Document a web page or web application state
 - Take screenshots of a locally running development server
@@ -32,24 +31,23 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
 
 ### Common Options
 
-| Option        | Description                               | Default |
-| ------------- | ----------------------------------------- | ------- |
-| `--url`       | URL to capture (required)                 | -       |
-| `--output`    | Output file path (required)               | -       |
-| `--width`     | Viewport width                            | 1280    |
-| `--height`    | Viewport height                           | 800     |
-| `--fullpage`  | Capture full scrollable page              | false   |
-| `--element`   | CSS selector to capture specific element  | -       |
-| `--highlight` | CSS selector to highlight with red border | -       |
-| `--execute`   | JavaScript to run before capture          | -       |
-| `--wait`      | Milliseconds to wait before capture       | 500     |
-| `--dark`      | Use dark color scheme                     | false   |
-| `--phone`     | Use mobile phone viewport (375x812)       | false   |
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--url` | URL to capture (required) | - |
+| `--output` | Output file path (required) | - |
+| `--width` | Viewport width | 1280 |
+| `--height` | Viewport height | 800 |
+| `--fullpage` | Capture full scrollable page | false |
+| `--element` | CSS selector to capture specific element | - |
+| `--highlight` | CSS selector to highlight with red border | - |
+| `--execute` | JavaScript to run before capture | - |
+| `--wait` | Milliseconds to wait before capture | 500 |
+| `--dark` | Use dark color scheme | false |
+| `--phone` | Use mobile phone viewport (375x812) | false |
 
 ### Examples
 
 **Capture with dark mode:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/capture.cjs \
   --url https://code.visualstudio.com \
@@ -58,7 +56,6 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
 ```
 
 **Highlight a specific element:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/capture.cjs \
   --url https://github.com/new \
@@ -67,7 +64,6 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
 ```
 
 **Capture a specific element only:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/capture.cjs \
   --url https://example.com \
@@ -76,7 +72,6 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
 ```
 
 **Execute JavaScript before capture (e.g., click a button):**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/capture.cjs \
   --url https://example.com \
@@ -86,7 +81,6 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
 ```
 
 **Full page screenshot:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/capture.cjs \
   --url https://example.com \
@@ -101,13 +95,11 @@ Save to `/static/screenshots/week-{week}/` with descriptive kebab-case filenames
 A WebP copy is automatically generated alongside each PNG/JPEG screenshot (requires `cwebp` — install with `brew install webp`). The Screenshot and PhoneScreenshot components serve WebP via `<picture>` elements for better performance. You do not need to reference the `.webp` files manually.
 
 **Naming convention:** Use kebab-case:
-
 - ✅ `github-new-repo.png`
 - ✅ `homepage-hero-section.png`
 - ❌ `GitHubNewRepo.png`
 
 **Directory structure:**
-
 ```
 static/screenshots/
   week-1/
@@ -126,8 +118,8 @@ When embedding in `.svx` files, use the Screenshot component:
   import Screenshot from '$lib/components/Screenshot.svelte';
 </script>
 
-<Screenshot
-  src="/screenshots/week-1/github-new-repo.png"
+<Screenshot 
+  src="/screenshots/week-1/github-new-repo.png" 
   alt="GitHub new repository form"
   chromeTitle="Create a new repository"
   chromeUrl="https://github.com/new"
@@ -136,13 +128,13 @@ When embedding in `.svx` files, use the Screenshot component:
 
 ### Component Props
 
-| Prop          | Type    | Default  | Description                 |
-| ------------- | ------- | -------- | --------------------------- |
-| `src`         | string  | required | Path relative to `/static/` |
-| `alt`         | string  | required | Accessibility description   |
-| `showChrome`  | boolean | `true`   | Browser window styling      |
-| `chromeTitle` | string  | `''`     | Title bar text              |
-| `chromeUrl`   | string  | `''`     | Address bar URL             |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | string | required | Path relative to `/static/` |
+| `alt` | string | required | Accessibility description |
+| `showChrome` | boolean | `true` | Browser window styling |
+| `chromeTitle` | string | `''` | Title bar text |
+| `chromeUrl` | string | `''` | Address bar URL |
 
 ## Phone Screenshots
 
@@ -172,10 +164,10 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
 
 ### PhoneScreenshot Component Props
 
-| Prop       | Type   | Default   | Description                      |
-| ---------- | ------ | --------- | -------------------------------- |
-| `src`      | string | required  | Path relative to `/static/`      |
-| `alt`      | string | required  | Accessibility description        |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | string | required | Path relative to `/static/` |
+| `alt` | string | required | Accessibility description |
 | `maxWidth` | string | `'320px'` | CSS max-width of the phone frame |
 
 ## Recording Videos
@@ -193,22 +185,21 @@ node .github/skills/browser-screenshots/scripts/record-video.cjs \
 
 ### Video Recording Options
 
-| Option       | Description                                        | Default |
-| ------------ | -------------------------------------------------- | ------- |
-| `--url`      | URL to capture (required)                          | -       |
-| `--output`   | Output file path - .gif, .mp4, or .webm (required) | -       |
-| `--width`    | Viewport width                                     | 1280    |
-| `--height`   | Viewport height                                    | 800     |
-| `--duration` | Recording duration in seconds                      | 5       |
-| `--fps`      | Frames per second for GIF output                   | 10      |
-| `--execute`  | JavaScript to run before recording                 | -       |
-| `--wait`     | Milliseconds to wait before recording              | 500     |
-| `--dark`     | Use dark color scheme                              | false   |
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--url` | URL to capture (required) | - |
+| `--output` | Output file path - .gif, .mp4, or .webm (required) | - |
+| `--width` | Viewport width | 1280 |
+| `--height` | Viewport height | 800 |
+| `--duration` | Recording duration in seconds | 5 |
+| `--fps` | Frames per second for GIF output | 10 |
+| `--execute` | JavaScript to run before recording | - |
+| `--wait` | Milliseconds to wait before recording | 500 |
+| `--dark` | Use dark color scheme | false |
 
 ### Video Examples
 
 **Record a 5-second GIF:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/record-video.cjs \
   --url https://example.com \
@@ -217,7 +208,6 @@ node .github/skills/browser-screenshots/scripts/record-video.cjs \
 ```
 
 **Record MP4 video:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/record-video.cjs \
   --url https://example.com \
@@ -226,7 +216,6 @@ node .github/skills/browser-screenshots/scripts/record-video.cjs \
 ```
 
 **Higher framerate GIF for smoother animation:**
-
 ```bash
 node .github/skills/browser-screenshots/scripts/record-video.cjs \
   --url https://example.com \
@@ -240,8 +229,8 @@ node .github/skills/browser-screenshots/scripts/record-video.cjs \
 For GIFs, use the same Screenshot component:
 
 ```svelte
-<Screenshot
-  src="/screenshots/week-2/animation.gif"
+<Screenshot 
+  src="/screenshots/week-2/animation.gif" 
   alt="Animated demo of the feature"
   chromeTitle="Demo"
   chromeUrl="https://example.com"
@@ -283,7 +272,7 @@ node .github/skills/browser-screenshots/scripts/capture.cjs \
   --session github \
   --output static/screenshots/week-2/github-repo.png
 
-# Video with GitHub session
+# Video with GitHub session  
 node .github/skills/browser-screenshots/scripts/record-video.cjs \
   --url https://github.com/settings \
   --session github \
@@ -298,11 +287,11 @@ node .github/skills/browser-screenshots/scripts/save-session.cjs --list
 
 ### Session Options
 
-| Option      | Description             | Default            |
-| ----------- | ----------------------- | ------------------ |
-| `--url`     | URL to open for login   | https://github.com |
-| `--session` | Name to save session as | default            |
-| `--list`    | List all saved sessions | -                  |
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--url` | URL to open for login | https://github.com |
+| `--session` | Name to save session as | default |
+| `--list` | List all saved sessions | - |
 
 ## Prerequisites
 

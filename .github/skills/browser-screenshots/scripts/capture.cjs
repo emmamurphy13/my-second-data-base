@@ -48,13 +48,9 @@ function generateWebP(imagePath) {
     );
     const origSize = Math.round(fs.statSync(imagePath).size / 1024);
     const webpSize = Math.round(fs.statSync(webpPath).size / 1024);
-    console.log(
-      `WebP copy saved: ${webpPath} (${origSize} KB → ${webpSize} KB)`
-    );
+    console.log(`WebP copy saved: ${webpPath} (${origSize} KB → ${webpSize} KB)`);
   } catch {
-    console.log(
-      'Note: cwebp not found, skipping WebP generation. Install with: brew install webp'
-    );
+    console.log('Note: cwebp not found, skipping WebP generation. Install with: brew install webp');
   }
 }
 
@@ -194,7 +190,7 @@ async function captureScreenshot(options) {
       waitUntil: 'domcontentloaded',
       timeout: 60000,
     });
-
+    
     // Additional wait for dynamic content
     await page.waitForTimeout(1000);
 

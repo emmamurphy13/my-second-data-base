@@ -15,7 +15,10 @@ USAGE EXAMPLE:
 />
 -->
 <script>
-  let { title = 'RELATED STORIES', links = [] } = $props();
+  let {
+    title = 'RELATED STORIES',
+    links = [],
+  } = $props();
 </script>
 
 {#if links.length > 0}

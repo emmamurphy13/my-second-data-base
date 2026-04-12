@@ -1,3 +1,4 @@
+
 <script>
   let { number, label, footnote } = $props();
 </script>
@@ -10,9 +11,7 @@
   {/if}
 </div>
 
-<style lang="scss">
-  @use '$lib/styles' as *;
-
+<style>
   .big-number {
     text-align: center;
     padding: var(--spacing-md);
@@ -43,15 +42,5 @@
     color: var(--color-white);
     margin-top: var(--spacing-xxs);
     font-style: italic;
-  }
-
-  @include mobile {
-    .big-number {
-      padding: var(--spacing-sm);
-    }
-
-    .number {
-      font-size: var(--font-size-5xl);
-    }
   }
 </style>

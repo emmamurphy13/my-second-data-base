@@ -10,15 +10,15 @@
 -->
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import SiteHeader from '$lib/components/SiteHeader.svelte';
+  import SiteHeader   from '$lib/components/SiteHeader.svelte';
   import ArticleHeader from '$lib/components/ArticleHeader.svelte';
-  import ArticleBody from '$lib/components/ArticleBody.svelte';
-  import Image from '$lib/components/Image.svelte';
-  import Dashboard from '$lib/components/Dashboard.svelte';
-  import BigNumber from '$lib/components/BigNumber.svelte';
-  import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+  import ArticleBody  from '$lib/components/ArticleBody.svelte';
+  import Image        from '$lib/components/Image.svelte';
+  import Dashboard    from '$lib/components/Dashboard.svelte';
+  import BigNumber    from '$lib/components/BigNumber.svelte';
+  import RelatedLinks   from '$lib/components/RelatedLinks.svelte';
   import MethodologyBox from '$lib/components/MethodologyBox.svelte';
-  import SiteFooter from '$lib/components/SiteFooter.svelte';
+  import SiteFooter     from '$lib/components/SiteFooter.svelte';
 
   // Local image from the site's static/ directory
   const LEAD_IMAGE = '/example-photo.gif';
@@ -57,79 +57,46 @@
 
     <ArticleBody>
       <p>
-        At the Craig Newmark Graduate School of Journalism at the City
-        University of New York, change is in our DNA. That comes of being born
-        in 2006, as the digital revolution was transforming our profession in
-        ways none of us could have imagined.
+        At the Craig Newmark Graduate School of Journalism at the City University of New York, change is in our DNA. That comes of being born in 2006, as the digital revolution was transforming our profession in ways none of us could have imagined.
       </p>
       <p>
-        We fashioned a school to teach the latest storytelling, entrepreneurial,
-        and technological skills alongside reporting, writing, and ethics.
-        Beyond that, we've crafted a culture that spurns complacency, that isn't
-        afraid to pivot before the ground under us shifts.
+        We fashioned a school to teach the latest storytelling, entrepreneurial, and technological skills alongside reporting, writing, and ethics. Beyond that, we've crafted a culture that spurns complacency, that isn't afraid to pivot before the ground under us shifts.
       </p>
       <p>
-        Our mission is to serve the public interest – by training new
-        journalists from varied economic, racial, and cultural backgrounds who
-        will bring much-needed diversity to newsrooms, by helping mid-career
-        journalists retool their skills, and by partnering with other media
-        organizations to find new paths to excellence.
+        Our mission is to serve the public interest – by training new journalists from varied economic, racial, and cultural backgrounds who will bring much-needed diversity to newsrooms, by helping mid-career journalists retool their skills, and by partnering with other media organizations to find new paths to excellence.
       </p>
 
       <h2>By the Numbers</h2>
     </ArticleBody>
 
     <Dashboard>
-      <BigNumber number="2006" label="Year Founded" />
+      <BigNumber number="2006"  label="Year Founded" />
       <BigNumber number="1,300" label="Alumni" />
-      <BigNumber
-        number="50%"
-        label="Attend tuition free"
-        footnote="As of Aug. 2025"
-      />
+      <BigNumber number="50%"   label="Attend tuition free" footnote="As of Aug. 2025" />
     </Dashboard>
 
     <ArticleBody>
       <p>
-        Our low tuition rates, along with the added backing of private donors,
-        allow candidates for our master's degrees in journalism and engagement
-        journalism to receive a world-class education at an affordable price. We
-        also offer a unique bilingual master's in journalism for students fluent
-        in English and Spanish.
+        Our low tuition rates, along with the added backing of private donors, allow candidates for our master's degrees in journalism and engagement journalism to receive a world-class education at an affordable price. We also offer a unique bilingual master's in journalism for students fluent in English and Spanish.
       </p>
     </ArticleBody>
 
     <MethodologyBox>
       <p>
-        Information on this page was compiled from public materials published by
-        the Craig Newmark Graduate School of Journalism at the City University
-        of New York.
+        Information on this page was compiled from public materials published by the Craig Newmark Graduate School of Journalism at the City University of New York.
       </p>
       <p>
         If you find an error, please contact us at
-        <a href="mailto:data@nycitynewsservice.com"
-          >data@nycitynewsservice.com</a
-        >.
+        <a href="mailto:data@nycitynewsservice.com">data@nycitynewsservice.com</a>.
       </p>
     </MethodologyBox>
 
     <RelatedLinks
       title="RELATED STORIES"
       links={[
-        {
-          headline:
-            "How America's top news organizations escape rigid publishing systems to design beautiful data-driven stories on deadline.",
-          href: 'https://palewi.re/docs/coding-the-news/',
-        },
-        {
-          headline:
-            'How to install, configure and use Visual Studio Code, GitHub and Copilot',
-          href: 'https://palewi.re/docs/coding-the-news/scripts/week-1/',
-        },
-        {
-          headline: 'How to publish a website with Node.JS and GitHub Actions',
-          href: 'https://palewi.re/docs/coding-the-news/scripts/week-2/',
-        },
+        { headline: 'How America\'s top news organizations escape rigid publishing systems to design beautiful data-driven stories on deadline.', href: 'https://palewi.re/docs/coding-the-news/' },
+        { headline: 'How to install, configure and use Visual Studio Code, GitHub and Copilot', href: 'https://palewi.re/docs/coding-the-news/scripts/week-1/' },
+        { headline: 'How to publish a website with Node.JS and GitHub Actions', href: 'https://palewi.re/docs/coding-the-news/scripts/week-2/' },
       ]}
     />
   </div>
@@ -150,38 +117,23 @@
 
     <ArticleBody>
       <p>
-        Our mission is to serve the public interest – by training new
-        journalists from varied economic, racial, and cultural backgrounds who
-        will bring much-needed diversity to newsrooms, by helping mid-career
-        journalists retool their skills, and by partnering with other media
-        organizations to find new paths to excellence.
+        Our mission is to serve the public interest – by training new journalists from varied economic, racial, and cultural backgrounds who will bring much-needed diversity to newsrooms, by helping mid-career journalists retool their skills, and by partnering with other media organizations to find new paths to excellence.
       </p>
       <h2>Our Programs</h2>
       <p>
-        Our low tuition rates, along with the added backing of private donors,
-        allow candidates for our master's degrees in journalism and engagement
-        journalism to receive a world-class education at an affordable price.
+        Our low tuition rates, along with the added backing of private donors, allow candidates for our master's degrees in journalism and engagement journalism to receive a world-class education at an affordable price.
       </p>
       <h3>Professional Education</h3>
       <p>
-        We also offer a robust professional education program through regular
-        evening and weekend workshops. And we support in-depth reporting
-        projects of professional journalists through fellowship grants.
+        We also offer a robust professional education program through regular evening and weekend workshops. And we support in-depth reporting projects of professional journalists through fellowship grants.
       </p>
     </ArticleBody>
 
     <RelatedLinks
       title="RELATED STORIES"
       links={[
-        {
-          headline:
-            'How to install, configure and use Visual Studio Code, GitHub and Copilot',
-          href: 'https://palewi.re/docs/coding-the-news/scripts/week-1/',
-        },
-        {
-          headline: 'How to publish a website with Node.JS and GitHub Actions',
-          href: 'https://palewi.re/docs/coding-the-news/scripts/week-2/',
-        },
+        { headline: 'How to install, configure and use Visual Studio Code, GitHub and Copilot', href: 'https://palewi.re/docs/coding-the-news/scripts/week-1/' },
+        { headline: 'How to publish a website with Node.JS and GitHub Actions', href: 'https://palewi.re/docs/coding-the-news/scripts/week-2/' },
       ]}
     />
   </div>
@@ -201,33 +153,21 @@
     />
 
     <Dashboard>
-      <BigNumber
-        number="2006"
-        label="Year Founded"
-        footnote="Born during the digital revolution"
-      />
+      <BigNumber number="2006"  label="Year Founded"         footnote="Born during the digital revolution" />
       <BigNumber number="1,300" label="Alumni" />
-      <BigNumber
-        number="50%"
-        label="Attend tuition free"
-        footnote="As of Aug. 2025"
-      />
-      <BigNumber number="3" label="Media Centers" />
+      <BigNumber number="50%"   label="Attend tuition free"  footnote="As of Aug. 2025" />
+      <BigNumber number="3"     label="Media Centers" />
     </Dashboard>
 
     <ArticleBody>
       <p>
-        Classes are led by accomplished full-time faculty and adjuncts, who tap
-        their networks to help students and graduates find internships,
-        freelance opportunities and — the ultimate prize — jobs.
+        Classes are led by accomplished full-time faculty and adjuncts, who tap their networks to help students and graduates find internships, freelance opportunities and — the ultimate prize — jobs.
       </p>
     </ArticleBody>
 
     <MethodologyBox title="About the Data">
       <p>
-        Statistics on this page were compiled from public materials published by
-        the Craig Newmark Graduate School of Journalism at the City University
-        of New York.
+        Statistics on this page were compiled from public materials published by the Craig Newmark Graduate School of Journalism at the City University of New York.
       </p>
     </MethodologyBox>
   </div>

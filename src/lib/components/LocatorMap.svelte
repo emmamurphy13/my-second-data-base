@@ -28,14 +28,14 @@ USAGE EXAMPLE:
   };
 
   let {
-    longitude = -73.9914662, // Map center longitude (default: Newmark J-School)
-    latitude = 40.7555711, // Map center latitude
-    zoom = 13, // Initial zoom level (0–22)
-    theme = 'liberty', // Basemap theme: 'liberty' | 'bright' | 'positron'
-    dot = false, // Whether to show a dot marker at the map center
-    width = null, // Optional explicit width in pixels (e.g. 300). Defaults to 100% of parent.
-    caption = '', // Optional caption below the map
-    credit = 'OpenFreeMap / OpenStreetMap contributors', // Optional credit line
+    longitude = -73.9914662,  // Map center longitude (default: Newmark J-School)
+    latitude = 40.7555711,    // Map center latitude
+    zoom = 13,               // Initial zoom level (0–22)
+    theme = 'liberty',       // Basemap theme: 'liberty' | 'bright' | 'positron'
+    dot = false,             // Whether to show a dot marker at the map center
+    width = null,            // Optional explicit width in pixels (e.g. 300). Defaults to 100% of parent.
+    caption = '',            // Optional caption below the map
+    credit = "OpenFreeMap / OpenStreetMap contributors", // Optional credit line
   } = $props();
 
   const styleUrl = $derived(THEME_URLS[theme] ?? THEME_URLS.liberty);
@@ -53,7 +53,7 @@ USAGE EXAMPLE:
       : `Locator map centered at ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`
   );
 
-  /** Adds the blue dot GeoJSON layer at the map center. */
+  /** Adds the red dot GeoJSON layer at the map center. */
   function addDotLayer() {
     if (!map || map.getSource('locator-dot')) return;
     map.addSource('locator-dot', {
@@ -70,7 +70,7 @@ USAGE EXAMPLE:
       source: 'locator-dot',
       paint: {
         'circle-radius': 8,
-        'circle-color': '#0033A1',
+        'circle-color': '#cc0000',
         'circle-stroke-width': 2,
         'circle-stroke-color': '#ffffff',
       },
@@ -95,7 +95,7 @@ USAGE EXAMPLE:
           style: styleUrl,
           center: [longitude, latitude],
           zoom,
-          interactive: false, // Static locator map — no pan or zoom by the user
+          interactive: false,           // Static locator map — no pan or zoom by the user
           attributionControl: credit ? false : { compact: true }, // Hide when credit line is shown below the map
         });
       })
@@ -138,10 +138,7 @@ USAGE EXAMPLE:
   });
 </script>
 
-<figure
-  class="locator-map-figure"
-  style:width={width ? `${width}px` : undefined}
->
+<figure class="locator-map-figure" style:width={width ? `${width}px` : undefined}>
   <div
     class="locator-map"
     bind:this={mapContainer}
@@ -179,7 +176,6 @@ USAGE EXAMPLE:
     width: 100%;
     aspect-ratio: 1 / 1;
     display: block;
-    border: var(--border-width-accent) solid var(--color-accent);
   }
 
   .caption-container {

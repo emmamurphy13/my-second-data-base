@@ -39,12 +39,11 @@
       theme: {
         control: { type: 'select' },
         options: ['liberty', 'bright', 'positron'],
-        description:
-          "OpenFreeMap basemap theme ('liberty', 'bright', or 'positron')",
+        description: "OpenFreeMap basemap theme ('liberty', 'bright', or 'positron')",
       },
       dot: {
         control: 'boolean',
-        description: 'Show a blue dot marker at the map center',
+        description: 'Show a red dot marker at the map center',
       },
       width: {
         control: { type: 'number', step: 50 },
@@ -70,8 +69,7 @@
     latitude: 40.7555711,
     zoom: 13,
     width: 300,
-    caption:
-      'The Craig Newmark Graduate School of Journalism is at 219 West 40th Street in Midtown Manhattan.',
+    caption: 'The Craig Newmark Graduate School of Journalism is at 219 West 40th Street in Midtown Manhattan.',
     credit: 'OpenFreeMap / OpenStreetMap contributors',
   }}
 >
@@ -80,7 +78,7 @@
   {/snippet}
 </Story>
 
-<!-- Dot Marker: map with a blue dot marking the location -->
+<!-- Dot Marker: map with a red dot marking the location -->
 <Story
   name="Dot Marker"
   args={{
@@ -89,8 +87,7 @@
     zoom: 13,
     width: 300,
     dot: true,
-    caption:
-      'A blue dot marks the location of the Craig Newmark Graduate School of Journalism.',
+    caption: 'A red dot marks the location of the Craig Newmark Graduate School of Journalism.',
     credit: 'OpenFreeMap / OpenStreetMap contributors',
   }}
 >
@@ -157,8 +154,7 @@
     zoom: 13,
     width: 300,
     theme: 'bright',
-    caption:
-      'The Craig Newmark Graduate School of Journalism, rendered with the OpenFreeMap bright theme.',
+    caption: 'The Craig Newmark Graduate School of Journalism, rendered with the OpenFreeMap bright theme.',
     credit: 'OpenFreeMap / OpenStreetMap contributors',
   }}
 >
@@ -176,8 +172,7 @@
     zoom: 13,
     width: 300,
     theme: 'positron',
-    caption:
-      'The Craig Newmark Graduate School of Journalism, rendered with the OpenFreeMap positron theme.',
+    caption: 'The Craig Newmark Graduate School of Journalism, rendered with the OpenFreeMap positron theme.',
     credit: 'OpenFreeMap / OpenStreetMap contributors',
   }}
 >

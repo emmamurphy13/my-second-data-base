@@ -6,78 +6,25 @@
 -->
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import SiteHeader from '$lib/components/SiteHeader.svelte';
-  import SiteFooter from '$lib/components/SiteFooter.svelte';
-  import ArticleHeader from '$lib/components/ArticleHeader.svelte';
-  import ArticleBody from '$lib/components/ArticleBody.svelte';
-  import SearchInput from '$lib/components/SearchInput.svelte';
-  import DropdownInput from '$lib/components/DropdownInput.svelte';
-  import Card from '$lib/components/Card.svelte';
+  import SiteHeader     from '$lib/components/SiteHeader.svelte';
+  import SiteFooter     from '$lib/components/SiteFooter.svelte';
+  import ArticleHeader  from '$lib/components/ArticleHeader.svelte';
+  import ArticleBody    from '$lib/components/ArticleBody.svelte';
+  import SearchInput    from '$lib/components/SearchInput.svelte';
+  import DropdownInput  from '$lib/components/DropdownInput.svelte';
+  import Card           from '$lib/components/Card.svelte';
   import MethodologyBox from '$lib/components/MethodologyBox.svelte';
 
   const PROGRAMS = [
-    {
-      title: 'M.A. in Journalism',
-      category: 'graduate',
-      description:
-        'Our flagship program trains reporters, editors, and multimedia journalists for the modern newsroom.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'M.A. in Engagement Journalism',
-      category: 'graduate',
-      description:
-        'A unique program focused on building trust and deepening connections with communities.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'Bilingual Journalism',
-      category: 'graduate',
-      description:
-        'For students fluent in English and Spanish who want to serve multilingual communities.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'Social Journalism',
-      category: 'graduate',
-      description:
-        'Learn to practice journalism that listens to and engages with communities.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'News Innovation & Leadership',
-      category: 'professional',
-      description:
-        'Evening and weekend workshops for mid-career journalists looking to lead.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'Investigative Reporting',
-      category: 'professional',
-      description:
-        'Intensive training in watchdog journalism, data analysis, and public records.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'Data Journalism',
-      category: 'professional',
-      description:
-        'Workshops on coding, data visualization, and computational reporting.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'Audio & Podcasting',
-      category: 'professional',
-      description:
-        'Hands-on production training for radio, podcasts, and audio storytelling.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
-    {
-      title: 'Entrepreneurial Journalism',
-      category: 'professional',
-      description: 'Build a sustainable media business from idea to launch.',
-      href: 'https://www.journalism.cuny.edu/',
-    },
+    { title: 'M.A. in Journalism', category: 'graduate', description: 'Our flagship program trains reporters, editors, and multimedia journalists for the modern newsroom.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'M.A. in Engagement Journalism', category: 'graduate', description: 'A unique program focused on building trust and deepening connections with communities.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'Bilingual Journalism', category: 'graduate', description: 'For students fluent in English and Spanish who want to serve multilingual communities.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'Social Journalism', category: 'graduate', description: 'Learn to practice journalism that listens to and engages with communities.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'News Innovation & Leadership', category: 'professional', description: 'Evening and weekend workshops for mid-career journalists looking to lead.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'Investigative Reporting', category: 'professional', description: 'Intensive training in watchdog journalism, data analysis, and public records.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'Data Journalism', category: 'professional', description: 'Workshops on coding, data visualization, and computational reporting.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'Audio & Podcasting', category: 'professional', description: 'Hands-on production training for radio, podcasts, and audio storytelling.', href: 'https://www.journalism.cuny.edu/' },
+    { title: 'Entrepreneurial Journalism', category: 'professional', description: 'Build a sustainable media business from idea to launch.', href: 'https://www.journalism.cuny.edu/' },
   ];
 
   const CATEGORIES = [
@@ -100,12 +47,8 @@
 
   let filtered = $derived(
     PROGRAMS.filter((p) => {
-      const matchesSearch =
-        !searchQuery ||
-        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory =
-        !selectedCategory || p.category === selectedCategory;
+      const matchesSearch = !searchQuery || p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = !selectedCategory || p.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
   );
@@ -124,8 +67,8 @@
     <ArticleBody>
       <p>
         The Craig Newmark Graduate School of Journalism offers graduate degrees,
-        professional workshops, and fellowships. Use the filters below to find a
-        program that fits your goals.
+        professional workshops, and fellowships. Use the filters below to find
+        a program that fits your goals.
       </p>
     </ArticleBody>
 
@@ -134,20 +77,18 @@
         label="Search Programs"
         placeholder="Search by name or keyword…"
         value={searchQuery}
-        oninput={(e) => (searchQuery = e.target.value)}
+        oninput={(e) => searchQuery = e.target.value}
       />
       <DropdownInput
         label="Category"
         placeholder="All categories…"
         options={CATEGORIES}
         value={selectedCategory}
-        onchange={(e) => (selectedCategory = e.target.value)}
+        onchange={(e) => selectedCategory = e.target.value}
       />
     </div>
 
-    <p class="result-count">
-      {filtered.length} program{filtered.length !== 1 ? 's' : ''} found
-    </p>
+    <p class="result-count">{filtered.length} program{filtered.length !== 1 ? 's' : ''} found</p>
 
     <div class="card-grid">
       {#each filtered as program (program.title)}
@@ -155,20 +96,14 @@
           <h3>{program.title}</h3>
           <p>{program.description}</p>
           {#snippet footer()}
-            <span class="category-tag"
-              >{program.category === 'graduate'
-                ? 'Graduate'
-                : 'Professional'}</span
-            >
+            <span class="category-tag">{program.category === 'graduate' ? 'Graduate' : 'Professional'}</span>
           {/snippet}
         </Card>
       {/each}
     </div>
 
     {#if filtered.length === 0}
-      <p class="no-results">
-        No programs match your search. Try a different keyword or category.
-      </p>
+      <p class="no-results">No programs match your search. Try a different keyword or category.</p>
     {/if}
 
     <MethodologyBox title="About This Directory">

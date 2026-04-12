@@ -37,7 +37,10 @@
 </script>
 
 <!-- Default: empty search input -->
-<Story name="Default" args={{ placeholder: 'Search…', label: 'Search' }} />
+<Story
+  name="Default"
+  args={{ placeholder: 'Search…', label: 'Search' }}
+/>
 
 <!-- With Value: pre-filled search input -->
 <Story
@@ -48,8 +51,5 @@
 <!-- Custom Placeholder: search input with a contextual placeholder -->
 <Story
   name="Custom Placeholder"
-  args={{
-    placeholder: 'Search by program, topic, or keyword…',
-    label: 'Find a Program',
-  }}
+  args={{ placeholder: 'Search by program, topic, or keyword…', label: 'Find a Program' }}
 />

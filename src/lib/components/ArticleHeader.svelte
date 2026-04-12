@@ -3,93 +3,63 @@
 ArticleHeader.svelte — NYCity News Service Style Article Header
 
 Displays the headline and metadata line with icons in the NYCity style:
-- Optional kicker (eyebrow label) above the headline
-- Large serif headline (via Headline subcomponent)
-- Bordered metadata box with date (via Pubdate) and authors (via Byline)
+- Large serif headline
+- Bordered metadata box with date, authors, and optional source
 
 USAGE EXAMPLE:
 <ArticleHeader
   headline="City Council Approves New Budget"
-  kicker="City Hall"
   byline="Jane Smith, John Doe"
   pubDate="2024-01-15"
 />
 -->
 <script>
-  import Kicker from './Kicker.svelte';
-  import Headline from './Headline.svelte';
-  import Byline from './Byline.svelte';
-  import Pubdate from './Pubdate.svelte';
-
   let {
-    headline, // Required: The main title of the article
-    kicker = '', // Optional: Eyebrow label rendered above the headline
-    byline = '', // Optional: The author's name(s)
-    pubDate = '', // Optional: Publication date in YYYY-MM-DD format
+    headline,           // Required: The main title of the article
+    byline = '',        // Optional: The author's name(s)
+    pubDate = '',       // Optional: Publication date in YYYY-MM-DD format
   } = $props();
+
+  // Format date to "JANUARY 15, 2024" style
+  function formatDate(dateString) {
+    if (!dateString) return '';
+    
+    // Parse YYYY-MM-DD format manually to avoid UTC timezone issues
+    // This ensures "2024-01-15" displays as January 15 regardless of user's timezone
+    const [year, month, day] = dateString.split('-').map(Number);
+    const date = new Date(year, month - 1, day);  // month is 0-indexed
+    
+    return new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(date).toUpperCase();
+  }
 </script>
 
 <header class="article-header">
-  <Kicker text={kicker} />
-  <Headline text={headline} />
+  <h1 class="headline">{headline}</h1>
 
   {#if byline || pubDate}
     <div class="meta">
       {#if byline}
-        <div class="meta-item meta-byline">
-          <svg
-            class="meta-icon"
-            viewBox="0 0 24 24"
-            width="16"
-            height="16"
-            aria-hidden="true"
-          >
-            <path
-              d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            />
-            <circle
-              cx="12"
-              cy="7"
-              r="4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            />
+        <span class="meta-item byline">
+          <svg class="meta-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
           </svg>
-          <Byline {byline} />
-        </div>
+          {byline}
+        </span>
       {/if}
 
       {#if pubDate}
-        <div class="meta-item meta-date">
-          <svg
-            class="meta-icon"
-            viewBox="0 0 24 24"
-            width="16"
-            height="16"
-            aria-hidden="true"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            />
-            <path
-              d="M12 6v6l4 2"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
+        <span class="meta-item date">
+          <svg class="meta-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <Pubdate date={pubDate} />
-        </div>
+          <time datetime={pubDate}>{formatDate(pubDate)}</time>
+        </span>
       {/if}
     </div>
   {/if}
@@ -100,6 +70,16 @@ USAGE EXAMPLE:
 
   .article-header {
     margin-bottom: var(--spacing-md);
+  }
+
+  /* Mobile-first: smaller headline, stacked meta */
+  .headline {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark);
   }
 
   .meta {
@@ -116,6 +96,10 @@ USAGE EXAMPLE:
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-medium-gray);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
   }
 
   .meta-icon {
@@ -123,27 +107,17 @@ USAGE EXAMPLE:
     flex-shrink: 0;
   }
 
-  /* Override Byline styles inside the meta box */
-  .meta-byline :global(.byline) {
-    font-size: var(--font-size-sm);
+  .byline {
     font-weight: var(--font-weight-medium);
     color: var(--color-dark);
-    text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wide);
-    margin: 0;
   }
 
-  /* Override Pubdate styles inside the meta box */
-  .meta-date :global(.pubdate) {
-    font-size: var(--font-size-sm);
-    color: var(--color-medium-gray);
-    text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wide);
-    margin: 0;
-  }
-
-  /* Tablet and up: inline meta */
+  /* Tablet and up: larger headline, inline meta */
   @include tablet {
+    .headline {
+      font-size: var(--font-size-6xl);
+    }
+
     .meta {
       flex-direction: row;
       flex-wrap: wrap;

@@ -16,31 +16,32 @@ USAGE EXAMPLE:
 -->
 <script>
   import { asset } from '$app/paths';
-
+  
   let {
-    src, // Required: Image source URL
-    alt, // Required: Alt text for accessibility
-    caption = '', // Optional: Caption text below image
-    credit = '', // Optional: Photo credit
-    size = 'full', // 'full', 'large', 'medium', 'small'
+    src,                    // Required: Image source URL
+    alt,                    // Required: Alt text for accessibility
+    caption = '',           // Optional: Caption text below image
+    credit = '',            // Optional: Photo credit
+    size = 'full',          // 'full', 'large', 'medium', 'small'
   } = $props();
 
   // Resolve local images (those starting with /) using asset()
   // but not external URLs (http://, https://, //, data:)
   const resolvedSrc = $derived(
-    src.startsWith('/') && !src.startsWith('//') ? asset(src) : src
+    src.startsWith('/') && !src.startsWith('//') 
+      ? asset(src) 
+      : src
   );
 </script>
 
-<figure
-  class="image-figure"
-  class:size-full={size === 'full'}
-  class:size-large={size === 'large'}
-  class:size-medium={size === 'medium'}
-  class:size-small={size === 'small'}
->
-  <img src={resolvedSrc} {alt} class="image" loading="lazy" />
-
+<figure class="image-figure" class:size-full={size === 'full'} class:size-large={size === 'large'} class:size-medium={size === 'medium'} class:size-small={size === 'small'}>
+  <img 
+    src={resolvedSrc} 
+    {alt} 
+    class="image"
+    loading="lazy"
+  />
+  
   {#if caption || credit}
     <figcaption class="caption-container">
       {#if caption}

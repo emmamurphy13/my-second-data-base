@@ -22,11 +22,11 @@
  *   --height        Viewport height (default: 900)
  */
 
-const { chromium } = require('playwright');
-const path = require('path');
-const fs = require('fs');
-const { execSync } = require('child_process');
-const os = require('os');
+const { chromium } = require("playwright");
+const path = require("path");
+const fs = require("fs");
+const { execSync } = require("child_process");
+const os = require("os");
 
 // Browser chrome dimensions
 const CHROME_HEIGHT = 64; // title bar + address bar
@@ -66,34 +66,34 @@ function parseArgs(args) {
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     switch (arg) {
-      case '--url':
+      case "--url":
         options.url = args[++i];
         break;
-      case '--output':
+      case "--output":
         options.output = args[++i];
         break;
-      case '--duration':
+      case "--duration":
         options.duration = parseFloat(args[++i]);
         break;
-      case '--speed':
+      case "--speed":
         options.speed = parseFloat(args[++i]);
         break;
-      case '--wait':
+      case "--wait":
         options.wait = parseInt(args[++i], 10);
         break;
-      case '--trim':
+      case "--trim":
         options.trim = parseFloat(args[++i]);
         break;
-      case '--title':
+      case "--title":
         options.title = args[++i];
         break;
-      case '--no-gif':
+      case "--no-gif":
         options.noGif = true;
         break;
-      case '--width':
+      case "--width":
         options.width = parseInt(args[++i], 10);
         break;
-      case '--height':
+      case "--height":
         options.height = parseInt(args[++i], 10);
         break;
     }
@@ -281,11 +281,11 @@ function getBrowserChromeOverlay(title, displayUrl) {
 // Escape HTML special characters
 function escapeHtml(text) {
   return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 // Inject browser chrome overlay into page
@@ -294,13 +294,13 @@ async function injectBrowserChrome(page, title, displayUrl) {
 
   await page.addStyleTag({ content: chrome.css });
   await page.evaluate((html) => {
-    const container = document.createElement('div');
+    const container = document.createElement("div");
     container.innerHTML = html;
     // Insert all chrome elements (top bar + frame borders)
     while (container.firstElementChild) {
       document.body.insertBefore(
         container.firstElementChild,
-        document.body.firstChild
+        document.body.firstChild,
       );
     }
   }, chrome.html);
@@ -328,39 +328,39 @@ async function scrollForDuration(page, durationSeconds, pixelsPerSecond) {
 // Convert WebM to MP4 using ffmpeg with loop-friendly encoding
 // Optionally trim the beginning (to remove chrome settling time)
 function convertToMp4(webmPath, mp4Path, trimStart = 0) {
-  console.log('Converting to MP4...');
+  console.log("Converting to MP4...");
   try {
     // Use -pix_fmt yuv420p for better compatibility and looping
-    const trimFlag = trimStart > 0 ? `-ss ${trimStart}` : '';
+    const trimFlag = trimStart > 0 ? `-ss ${trimStart}` : "";
     execSync(
       `ffmpeg -y ${trimFlag} -i "${webmPath}" -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -movflags +faststart -an "${mp4Path}"`,
-      { stdio: 'pipe' }
+      { stdio: "pipe" },
     );
     console.log(`MP4 saved: ${mp4Path}`);
     return true;
   } catch (err) {
-    console.error('ffmpeg MP4 conversion failed:', err.message);
+    console.error("ffmpeg MP4 conversion failed:", err.message);
     return false;
   }
 }
 
 // Generate GIF from MP4 using ffmpeg
 function generateGif(mp4Path, gifPath, width = 450) {
-  console.log('Generating GIF...');
+  console.log("Generating GIF...");
   try {
     // Two-pass GIF generation for better quality
-    const palettePath = path.join(os.tmpdir(), 'palette.png');
+    const palettePath = path.join(os.tmpdir(), "palette.png");
 
     // Generate palette
     execSync(
       `ffmpeg -y -i "${mp4Path}" -vf "fps=15,scale=${width}:-1:flags=lanczos,palettegen=stats_mode=diff" "${palettePath}"`,
-      { stdio: 'pipe' }
+      { stdio: "pipe" },
     );
 
     // Generate GIF using palette
     execSync(
       `ffmpeg -y -i "${mp4Path}" -i "${palettePath}" -lavfi "fps=15,scale=${width}:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" -loop ${GIF_LOOP_COUNT} "${gifPath}"`,
-      { stdio: 'pipe' }
+      { stdio: "pipe" },
     );
 
     // Clean up palette
@@ -369,7 +369,7 @@ function generateGif(mp4Path, gifPath, width = 450) {
     console.log(`GIF saved: ${gifPath}`);
     return true;
   } catch (err) {
-    console.error('ffmpeg GIF generation failed:', err.message);
+    console.error("ffmpeg GIF generation failed:", err.message);
     return false;
   }
 }
@@ -377,11 +377,11 @@ function generateGif(mp4Path, gifPath, width = 450) {
 async function recordVideo(options) {
   // Validate required options
   if (!options.url) {
-    console.error('Error: --url is required');
+    console.error("Error: --url is required");
     process.exit(1);
   }
   if (!options.output) {
-    console.error('Error: --output is required');
+    console.error("Error: --output is required");
     process.exit(1);
   }
 
@@ -392,7 +392,7 @@ async function recordVideo(options) {
   }
 
   // Create temp directory for recording
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'page-scroll-'));
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "page-scroll-"));
 
   // Generate display URL (shortened for display)
   const urlObj = new URL(options.url);
@@ -418,16 +418,16 @@ async function recordVideo(options) {
     const setupPage = await setupContext.newPage();
 
     // Navigate to URL
-    console.log('Loading page...');
+    console.log("Loading page...");
     await setupPage.goto(options.url, {
-      waitUntil: 'networkidle',
+      waitUntil: "networkidle",
       timeout: 60000,
     });
 
     // Give the page extra time to finish rendering async assets during setup only
     if (options.wait > 0) {
       console.log(
-        `Waiting ${options.wait}ms for page to settle (setup only)...`
+        `Waiting ${options.wait}ms for page to settle (setup only)...`,
       );
       await setupPage.waitForTimeout(options.wait);
     }
@@ -440,7 +440,7 @@ async function recordVideo(options) {
     console.log(`Title: ${pageTitle}`);
 
     // Inject browser chrome overlay
-    console.log('Adding browser chrome...');
+    console.log("Adding browser chrome...");
     await injectBrowserChrome(setupPage, pageTitle, displayUrl);
 
     // Wait for chrome to render
@@ -465,7 +465,7 @@ async function recordVideo(options) {
     const page = await recordContext.newPage();
 
     // Navigate to URL again
-    await page.goto(options.url, { waitUntil: 'networkidle', timeout: 60000 });
+    await page.goto(options.url, { waitUntil: "networkidle", timeout: 60000 });
 
     // Inject browser chrome overlay
     await injectBrowserChrome(page, pageTitle, displayUrl);
@@ -473,27 +473,27 @@ async function recordVideo(options) {
     // Wait for chrome to be present in the DOM and fully painted before scrolling.
     // waitForSelector confirms the element exists; the extra pause lets the browser
     // composite it so the video encoder captures a stable frame.
-    console.log('Waiting for chrome to settle...');
-    await page.waitForSelector('#browser-chrome-overlay', {
-      state: 'visible',
+    console.log("Waiting for chrome to settle...");
+    await page.waitForSelector("#browser-chrome-overlay", {
+      state: "visible",
       timeout: 10000,
     });
     await page.waitForTimeout(3000);
 
     // Scroll down for the specified duration
-    console.log('Scrolling...');
+    console.log("Scrolling...");
     await scrollForDuration(page, options.duration, options.speed);
 
     // Close context to save video
-    console.log('Saving video...');
+    console.log("Saving video...");
     await recordContext.close();
 
     // Find the recorded video file
     const videoFiles = fs
       .readdirSync(tempDir)
-      .filter((f) => f.endsWith('.webm'));
+      .filter((f) => f.endsWith(".webm"));
     if (videoFiles.length === 0) {
-      throw new Error('No video file was recorded');
+      throw new Error("No video file was recorded");
     }
     const recordedVideo = path.join(tempDir, videoFiles[0]);
 
@@ -501,29 +501,29 @@ async function recordVideo(options) {
     const mp4Success = convertToMp4(
       recordedVideo,
       options.output,
-      options.trim
+      options.trim,
     );
     if (!mp4Success) {
-      console.error('Failed to convert to MP4. Keeping WebM...');
-      const webmOutput = options.output.replace('.mp4', '.webm');
+      console.error("Failed to convert to MP4. Keeping WebM...");
+      const webmOutput = options.output.replace(".mp4", ".webm");
       fs.copyFileSync(recordedVideo, webmOutput);
       console.log(`WebM saved: ${webmOutput}`);
     }
 
     // Generate GIF unless disabled
     if (!options.noGif && mp4Success) {
-      const gifPath = options.output.replace('.mp4', '.gif');
+      const gifPath = options.output.replace(".mp4", ".gif");
       generateGif(options.output, gifPath);
     }
 
-    console.log('Done!');
+    console.log("Done!");
   } finally {
     await browser.close();
 
     // Clean up temp directory
     try {
       fs.rmSync(tempDir, { recursive: true });
-    } catch {
+    } catch (e) {
       // Ignore cleanup errors
     }
   }
@@ -532,7 +532,7 @@ async function recordVideo(options) {
 // Main execution
 const args = process.argv.slice(2);
 
-if (args.length === 0 || args.includes('--help')) {
+if (args.length === 0 || args.includes("--help")) {
   console.log(`
 Page Scroll Video Recording Tool
 
@@ -572,6 +572,6 @@ Examples:
 
 const options = parseArgs(args);
 recordVideo(options).catch((err) => {
-  console.error('Error:', err.message);
+  console.error("Error:", err.message);
   process.exit(1);
 });
