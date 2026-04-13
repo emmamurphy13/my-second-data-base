@@ -1,4 +1,5 @@
 <script>
+  import { base } from '$app/paths';
   import Card from '$lib/components/Card.svelte';
   import DatabaseHeader from '$lib/components/DatabaseHeader.svelte';
   import DropdownInput from '$lib/components/DropdownInput.svelte';
@@ -89,7 +90,7 @@
 <div class="results-container">
   <div class="borough-links">
     {#each data.groupedByBorough as group (group.boroughSlug)}
-      <a class="borough-chip" href={`/borough/${group.boroughSlug}`}>
+      <a class="borough-chip" href={`${base}/borough/${group.boroughSlug}`}>
         {group.borough}
       </a>
     {/each}
@@ -117,7 +118,7 @@
           <ul>
             {#each group.records as record (record.slug)}
               <li>
-                <a href={`/library/${record.slug}`}>{record.location}</a>
+                <a href={`${base}/library/${record.slug}`}>{record.location}</a>
               </li>
             {/each}
           </ul>
@@ -128,7 +129,7 @@
 
   <div class="cards-grid">
     {#each filteredRecords as record (record.slug)}
-      <Card href={`/library/${record.slug}`}>
+      <Card href={`${base}/library/${record.slug}`}>
         <h3>{record.location}</h3>
         <p class="borough-line">{record.borough}</p>
 
@@ -151,7 +152,7 @@
       {#each data.topRanked as record, index (record.slug)}
         <RankingCard
           rank={index + 1}
-          href={`/library/${record.slug}`}
+          href={`${base}/library/${record.slug}`}
           title={record.location}
           description={record.borough}
           value={formatNumber(record.attendance)}

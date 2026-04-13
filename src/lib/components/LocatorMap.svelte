@@ -44,7 +44,7 @@ USAGE EXAMPLE:
   let map = $state(null);
 
   // Tracks the style URL currently applied to the map, to avoid redundant setStyle calls
-  let appliedStyleUrl = styleUrl;
+  let appliedStyleUrl = $state('');
 
   // Build a descriptive label for screen readers from the caption or coordinates
   const ariaLabel = $derived(
@@ -98,6 +98,7 @@ USAGE EXAMPLE:
           interactive: false,           // Static locator map — no pan or zoom by the user
           attributionControl: credit ? false : { compact: true }, // Hide when credit line is shown below the map
         });
+        appliedStyleUrl = styleUrl;
       })
       .catch((err) => {
         console.error('LocatorMap: failed to load maplibre-gl', err);

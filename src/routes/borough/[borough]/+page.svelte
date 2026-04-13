@@ -1,4 +1,5 @@
 <script>
+  import { base } from '$app/paths';
   import Card from '$lib/components/Card.svelte';
   import DatabaseHeader from '$lib/components/DatabaseHeader.svelte';
   import LocatorMap from '$lib/components/LocatorMap.svelte';
@@ -45,7 +46,7 @@
 
   <div class="cards-grid">
     {#each data.group.records as record (record.slug)}
-      <Card href={`/library/${record.slug}`}>
+      <Card href={`${base}/library/${record.slug}`}>
         <h3>{record.location}</h3>
         <p class="metric">Total attendance: <strong>{formatNumber(record.attendance)}</strong></p>
         <p class="address">{record.address}</p>
@@ -58,7 +59,7 @@
       Borough totals are computed by summing all branch attendance values after cleanup.
     </p>
     <p>
-      <a href="/">Return to the searchable citywide index</a> to compare boroughs side by side.
+      <a href={base || '/'}>Return to the searchable citywide index</a> to compare boroughs side by side.
     </p>
   </MethodologyBox>
 </div>

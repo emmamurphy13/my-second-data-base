@@ -1,4 +1,5 @@
 <script>
+  import { base } from '$app/paths';
   import BigNumber from '$lib/components/BigNumber.svelte';
   import Dashboard from '$lib/components/Dashboard.svelte';
   import DatabaseHeader from '$lib/components/DatabaseHeader.svelte';
@@ -29,7 +30,7 @@
 
 <div class="page-container">
   <p class="kicker">
-    <a href={`/borough/${data.record.boroughSlug}`}>{data.record.borough}</a> / {data.record.address}
+    <a href={`${base}/borough/${data.record.boroughSlug}`}>{data.record.borough}</a> / {data.record.address}
   </p>
 
   <Dashboard>
@@ -64,8 +65,8 @@
   <RelatedLinks
     title="More records"
     links={[
-      { headline: `View all ${data.record.borough} branches`, href: `/borough/${data.record.boroughSlug}` },
-      { headline: 'Back to full searchable list', href: '/' },
+      { headline: `View all ${data.record.borough} branches`, href: `${base}/borough/${data.record.boroughSlug}` },
+      { headline: 'Back to full searchable list', href: base || '/' },
     ]}
   />
 </div>
